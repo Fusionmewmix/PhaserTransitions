@@ -11,22 +11,32 @@
 <body>
 
 <script>
+// 🔧 Function to add a background if an image fails
+function addBackground(scene, key) {
+    if (scene.textures.exists(key)) {
+        scene.add.image(window.innerWidth / 2, window.innerHeight / 2, key)
+             .setDisplaySize(window.innerWidth, window.innerHeight);
+    } else {
+        console.warn(`Image ${key} failed to load. Adding fallback background.`);
+        scene.cameras.main.setBackgroundColor('#000'); // Black fallback
+    }
+}
+
 // Scene 1: Title Screen
 class TitleScene extends Phaser.Scene {
     constructor() { super({ key: 'TitleScene' }); }
 
     preload() {
-        this.load.image('title_bg', 'https://www.citizensvoice.com/wp-content/uploads/2025/01/CVC-L-PSUCAMPUSES-0127-01.jpg?w=1024&h=682');
+        this.load.image('title_bg', 'https://www.worldcampus.psu.edu/sites/default/files/styles/open_graph_16_9_xl/public/2018-12/1920x840_about-us_L1_1.jpg?itok=mTcGQBq9');
     }
 
     create() {
-        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'title_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        addBackground(this, 'title_bg');
         this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Title Screen', 
-            { fontSize: '50px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
 
-        this.input.keyboard.on('keydown-SPACE', () => {
-            this.scene.start('Scene2');
-        });
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene2'));
     }
 }
 
@@ -39,13 +49,12 @@ class Scene2 extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'scene2_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        addBackground(this, 'scene2_bg');
         this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 2', 
-            { fontSize: '50px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
 
-        this.input.keyboard.on('keydown-SPACE', () => {
-            this.scene.start('Scene3');
-        });
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene3'));
     }
 }
 
@@ -54,17 +63,16 @@ class Scene3 extends Phaser.Scene {
     constructor() { super({ key: 'Scene3' }); }
 
     preload() {
-        this.load.image('scene3_bg', 'https://www.abington.psu.edu/sites/abington/files/styles/4_3_thumbnail/public/sutherland-plaza-hang-explore-spot-website-resized.jpg?itok=qz70ezao');
+        this.load.image('scene3_bg', 'https://www.abington.psu.edu/sites/abington/files/styles/node_embed/public/abingtonbeautytourstudyoutside-43-800x450.jpg?itok=TibFLM8O');
     }
 
     create() {
-        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'scene3_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        addBackground(this, 'scene3_bg');
         this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 3', 
-            { fontSize: '50px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
 
-        this.input.keyboard.on('keydown-SPACE', () => {
-            this.scene.start('Scene4');
-        });
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene4'));
     }
 }
 
@@ -77,13 +85,12 @@ class Scene4 extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'scene4_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        addBackground(this, 'scene4_bg');
         this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 4', 
-            { fontSize: '50px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
 
-        this.input.keyboard.on('keydown-SPACE', () => {
-            this.scene.start('Scene5');
-        });
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('Scene5'));
     }
 }
 
@@ -96,17 +103,16 @@ class Scene5 extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'scene5_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        addBackground(this, 'scene5_bg');
         this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 5', 
-            { fontSize: '50px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+            { fontSize: '50px', fill: '#fff' }).setOrigin(0.5);
 
-        this.input.keyboard.on('keydown-SPACE', () => {
-            this.scene.start('TitleScene'); // Loop back to Scene 1
-        });
+        this.cameras.main.fadeIn(500, 0, 0, 0);
+        this.input.keyboard.on('keydown-SPACE', () => this.scene.start('TitleScene')); // Loops back
     }
 }
 
-// ✅ Now create the Phaser game after defining all scenes
+// ✅ Now create the Phaser game AFTER defining all scenes
 const config = {
     type: Phaser.AUTO,
     width: window.innerWidth,
