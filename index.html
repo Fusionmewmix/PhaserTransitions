@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phaser Scene Transitions with Images</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.88.2/dist/phaser.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+    </style>
+</head>
+<body>
+
+<script>
+// Phaser Configuration
+const config = {
+    type: Phaser.AUTO,
+    width: window.innerWidth,
+    height: window.innerHeight,
+    scene: [TitleScene, InstructionsScene, GameScene, VictoryScene, GameOverScene]
+};
+
+const game = new Phaser.Game(config);
+
+// Scene 1: Title Screen
+class TitleScene extends Phaser.Scene {
+    constructor() { super({ key: 'TitleScene' }); }
+
+    preload() {
+        this.load.image('title_bg', 'https://www.worldcampus.psu.edu/sites/default/files/styles/open_graph_16_9_xl/public/2018-12/1920x840_about-us_L1_1.jpg?itok=mTcGQBq9');
+    }
+
+    create() {
+        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'title_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Title Screen\nPress SPACE to Continue', 
+            { fontSize: '40px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+
+        this.input.keyboard.on('keydown-SPACE', () => {
+            this.cameras.main.fadeOut(500, 0, 0, 0, () => this.scene.start('InstructionsScene'));
+        });
+    }
+}
+
+// Scene 2: Instructions
+class InstructionsScene extends Phaser.Scene {
+    constructor() { super({ key: 'InstructionsScene' }); }
+
+    preload() {
+        this.load.image('instructions_bg', 'https://www.collegegridirons.com/wp-content/uploads/2017/03/beaver23950.jpg');
+    }
+
+    create() {
+        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'instructions_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Instructions:\nMove with arrows, collect stars.\nPress SPACE to Play', 
+            { fontSize: '30px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+
+        this.input.keyboard.on('keydown-SPACE', () => {
+            this.cameras.main.fadeOut(500, 0, 0, 0, () => this.scene.start('GameScene'));
+        });
+    }
+}
+
+// Scene 3: Main Game (Placeholder)
+class GameScene extends Phaser.Scene {
+    constructor() { super({ key: 'GameScene' }); }
+
+    preload() {
+        this.load.image('game_bg', 'https://www.abington.psu.edu/sites/abington/files/styles/node_embed/public/abingtonbeautytourstudyoutside-43-800x450.jpg?itok=TibFLM8O');
+    }
+
+    create() {
+        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'game_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Game Scene\nPress SPACE to Win', 
+            { fontSize: '40px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+
+        this.input.keyboard.on('keydown-SPACE', () => {
+            this.cameras.main.fadeOut(500, 0, 0, 0, () => this.scene.start('VictoryScene'));
+        });
+    }
+}
+
+// Scene 4: Victory
+class VictoryScene extends Phaser.Scene {
+    constructor() { super({ key: 'VictoryScene' }); }
+
+    preload() {
+        this.load.image('victory_bg', 'https://psu-gatsby-files-prod.s3.amazonaws.com/s3fs-public/2022/02/CampusExteriorSummer2018-34.jpg');
+    }
+
+    create() {
+        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'victory_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'You Won!\nPress SPACE to Restart', 
+            { fontSize: '40px', fill: '#0f0', align: 'center' }).setOrigin(0.5);
+
+        this.input.keyboard.on('keydown-SPACE', () => {
+            this.cameras.main.fadeOut(500, 0, 0, 0, () => this.scene.start('TitleScene'));
+        });
+    }
+}
+
+// Scene 5: Game Over
+class GameOverScene extends Phaser.Scene {
+    constructor() { super({ key: 'GameOverScene' }); }
+
+    preload() {
+        this.load.image('gameover_bg', 'https://psu-gatsby-files-prod.s3.amazonaws.com/s3fs-public/Nittany%20Lion%20Shrine%203a.jpg');
+    }
+
+    create() {
+        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'gameover_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Game Over!\nPress SPACE to Restart', 
+            { fontSize: '40px', fill: '#f00', align: 'center' }).setOrigin(0.5);
+
+        this.input.keyboard.on('keydown-SPACE', () => {
+            this.cameras.main.fadeOut(500, 0, 0, 0, () => this.scene.start('TitleScene'));
+        });
+    }
+}
+</script>
+
+</body>
+</html>
