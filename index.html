@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phaser Scene Transitions with Images</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.88.2/dist/phaser.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+    </style>
+</head>
+<body>
+
+<script>
 // Scene 1: Title Screen
 class TitleScene extends Phaser.Scene {
     constructor() { super({ key: 'TitleScene' }); }
@@ -93,7 +106,7 @@ class GameOverScene extends Phaser.Scene {
     }
 }
 
-// 🚀 CREATE THE GAME **AFTER** ALL SCENES ARE DEFINED
+// ✅ NOW CREATE THE PHASER GAME (AFTER ALL SCENES ARE DEFINED)
 const config = {
     type: Phaser.AUTO,
     width: window.innerWidth,
@@ -102,3 +115,7 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+</script>
+
+</body>
+</html>
