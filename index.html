@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Phaser Scene Transitions with Images</title>
+    <title>Phaser Scene Transitions</title>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.88.2/dist/phaser.min.js"></script>
     <style>
         body { margin: 0; overflow: hidden; }
@@ -21,97 +21,97 @@ class TitleScene extends Phaser.Scene {
 
     create() {
         this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'title_bg').setDisplaySize(window.innerWidth, window.innerHeight);
-        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Title Screen\nPress SPACE to Continue', 
-            { fontSize: '40px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Title Screen', 
+            { fontSize: '50px', fill: '#fff', align: 'center' }).setOrigin(0.5);
 
         this.input.keyboard.on('keydown-SPACE', () => {
-            this.cameras.main.fadeOut(500, 0, 0, 0, () => this.scene.start('InstructionsScene'));
+            this.scene.start('Scene2');
         });
     }
 }
 
-// Scene 2: Instructions
-class InstructionsScene extends Phaser.Scene {
-    constructor() { super({ key: 'InstructionsScene' }); }
+// Scene 2
+class Scene2 extends Phaser.Scene {
+    constructor() { super({ key: 'Scene2' }); }
 
     preload() {
-        this.load.image('instructions_bg', 'https://www.collegegridirons.com/wp-content/uploads/2017/03/beaver23950.jpg');
+        this.load.image('scene2_bg', 'https://www.collegegridirons.com/wp-content/uploads/2017/03/beaver23950.jpg');
     }
 
     create() {
-        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'instructions_bg').setDisplaySize(window.innerWidth, window.innerHeight);
-        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Instructions:\nMove with arrows, collect stars.\nPress SPACE to Play', 
-            { fontSize: '30px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'scene2_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 2', 
+            { fontSize: '50px', fill: '#fff', align: 'center' }).setOrigin(0.5);
 
         this.input.keyboard.on('keydown-SPACE', () => {
-            this.cameras.main.fadeOut(500, 0, 0, 0, () => this.scene.start('GameScene'));
+            this.scene.start('Scene3');
         });
     }
 }
 
-// Scene 3: Game Scene
-class GameScene extends Phaser.Scene {
-    constructor() { super({ key: 'GameScene' }); }
+// Scene 3
+class Scene3 extends Phaser.Scene {
+    constructor() { super({ key: 'Scene3' }); }
 
     preload() {
-        this.load.image('game_bg', 'https://www.abington.psu.edu/sites/abington/files/styles/node_embed/public/abingtonbeautytourstudyoutside-43-800x450.jpg?itok=TibFLM8O');
+        this.load.image('scene3_bg', 'https://www.abington.psu.edu/sites/abington/files/styles/node_embed/public/abingtonbeautytourstudyoutside-43-800x450.jpg?itok=TibFLM8O');
     }
 
     create() {
-        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'game_bg').setDisplaySize(window.innerWidth, window.innerHeight);
-        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Game Scene\nPress SPACE to Win', 
-            { fontSize: '40px', fill: '#fff', align: 'center' }).setOrigin(0.5);
+        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'scene3_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 3', 
+            { fontSize: '50px', fill: '#fff', align: 'center' }).setOrigin(0.5);
 
         this.input.keyboard.on('keydown-SPACE', () => {
-            this.cameras.main.fadeOut(500, 0, 0, 0, () => this.scene.start('VictoryScene'));
+            this.scene.start('Scene4');
         });
     }
 }
 
-// Scene 4: Victory Scene
-class VictoryScene extends Phaser.Scene {
-    constructor() { super({ key: 'VictoryScene' }); }
+// Scene 4
+class Scene4 extends Phaser.Scene {
+    constructor() { super({ key: 'Scene4' }); }
 
     preload() {
-        this.load.image('victory_bg', 'https://psu-gatsby-files-prod.s3.amazonaws.com/s3fs-public/2022/02/CampusExteriorSummer2018-34.jpg');
+        this.load.image('scene4_bg', 'https://psu-gatsby-files-prod.s3.amazonaws.com/s3fs-public/2022/02/CampusExteriorSummer2018-34.jpg');
     }
 
     create() {
-        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'victory_bg').setDisplaySize(window.innerWidth, window.innerHeight);
-        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'You Won!\nPress SPACE to Restart', 
-            { fontSize: '40px', fill: '#0f0', align: 'center' }).setOrigin(0.5);
+        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'scene4_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 4', 
+            { fontSize: '50px', fill: '#fff', align: 'center' }).setOrigin(0.5);
 
         this.input.keyboard.on('keydown-SPACE', () => {
-            this.cameras.main.fadeOut(500, 0, 0, 0, () => this.scene.start('TitleScene'));
+            this.scene.start('Scene5');
         });
     }
 }
 
-// Scene 5: Game Over Scene
-class GameOverScene extends Phaser.Scene {
-    constructor() { super({ key: 'GameOverScene' }); }
+// Scene 5
+class Scene5 extends Phaser.Scene {
+    constructor() { super({ key: 'Scene5' }); }
 
     preload() {
-        this.load.image('gameover_bg', 'https://psu-gatsby-files-prod.s3.amazonaws.com/s3fs-public/Nittany%20Lion%20Shrine%203a.jpg');
+        this.load.image('scene5_bg', 'https://psu-gatsby-files-prod.s3.amazonaws.com/s3fs-public/Nittany%20Lion%20Shrine%203a.jpg');
     }
 
     create() {
-        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'gameover_bg').setDisplaySize(window.innerWidth, window.innerHeight);
-        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Game Over!\nPress SPACE to Restart', 
-            { fontSize: '40px', fill: '#f00', align: 'center' }).setOrigin(0.5);
+        this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'scene5_bg').setDisplaySize(window.innerWidth, window.innerHeight);
+        this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Scene 5', 
+            { fontSize: '50px', fill: '#fff', align: 'center' }).setOrigin(0.5);
 
         this.input.keyboard.on('keydown-SPACE', () => {
-            this.cameras.main.fadeOut(500, 0, 0, 0, () => this.scene.start('TitleScene'));
+            this.scene.start('TitleScene'); // Loop back to Scene 1
         });
     }
 }
 
-// ✅ NOW CREATE THE PHASER GAME (AFTER ALL SCENES ARE DEFINED)
+// ✅ Now create the Phaser game after defining all scenes
 const config = {
     type: Phaser.AUTO,
     width: window.innerWidth,
     height: window.innerHeight,
-    scene: [TitleScene, InstructionsScene, GameScene, VictoryScene, GameOverScene]
+    scene: [TitleScene, Scene2, Scene3, Scene4, Scene5]
 };
 
 const game = new Phaser.Game(config);
